@@ -11,21 +11,25 @@
       F1 API (angular)
     </title>
   </head>
-  <body ng-app="f1App">
-      <table ng-controller="drvrCtrlr" class="table">
-        <thead>
-          <th ><a href="#!" ng-click="sort_by_key('givenName')">First Name</a></th>
-          <th ><a href="#!" ng-click="sort_by_key('familyName')">Last Name</a></th>
-          <th ><a href="#!" ng-click="sort_by_key('dateOfBirth')">Date of Birth</a></th>
-          <th ><a href="#!" ng-click="sort_by_key('nationality')">Nationality</a></th>
+  <body ng-app="f1App" class="container">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>F1 Driver Data</h1>
+      <input type="text" name="textBoxInput" class="form-control"
+          ng-model="textBoxInput"
+          placeholder="Type to narrow results">
+      <table ng-controller="drvrCtrlr" class="table table-bordered">
+        <thead class="thead-default">
+          <th><a href="#!" ng-click="sortByKey('givenName')">First Name</a></th>
+          <th><a href="#!" ng-click="sortByKey('familyName')">Last Name</a></th>
+          <th><a href="#!" ng-click="sortByKey('dateOfBirth')">Date of Birth</a></th>
+          <th><a href="#!" ng-click="sortByKey('nationality')">Nationality</a></th>
         </thead>
-        <tbody ng-repeat="driver in drivers | orderBy: key">
+        <tbody ng-repeat="driver in drivers | orderBy: key | filter: textBoxInput">
           <tr driver-data>
             <!-- /templates/driver-data-template.html -->
           </tr>
         </tbody>
       </table>
-
     </div>
   </body>
 </html>
